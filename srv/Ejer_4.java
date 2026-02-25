@@ -1,4 +1,6 @@
+package srv;
 //El RUNT almacena datos básicos de vehículos. Modela la información de un carro con:
+
 //Placa (String)
 //Año de fabricación (int)
 //Cilindraje en cc (int)
@@ -15,7 +17,7 @@ public class Ejer_4 {
         char Inicial_del_color = 'R';
         boolean Tiene_SOAT_vigente = true;
 
-        System.out.println("**********Datos del vehículo*************" );
+        System.out.println("**********Datos del vehículo*************");
         System.out.println("Placa: " + Placa);
         System.out.println("Año de fabricación: " + Año_de_fabricacion);
         System.out.println("Cilindraje en cc: " + Cilindraje_en_cc);

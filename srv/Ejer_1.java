@@ -1,4 +1,6 @@
+package srv;
 //Un sistema universitario necesita registrar la información básica de un 
+
 //estudiante: nombre completo, código (número entero), semestre actual,
 //promedio acumulado y si está matriculado o no.
 
@@ -10,7 +12,7 @@ public class Ejer_1 {
         float promedio = 4.2f;
         boolean matriculado = true;
 
-        System.out.println("**********Datos del estudiante*************" );
+        System.out.println("**********Datos del estudiante*************");
 
         System.out.println("Nombre: " + nombre);
         System.out.println("Codigo: " + codigo);
