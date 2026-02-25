@@ -1,4 +1,3 @@
-package srv;
 //Un sistema universitario necesita registrar la información básica de un 
 
 //estudiante: nombre completo, código (número entero), semestre actual,
