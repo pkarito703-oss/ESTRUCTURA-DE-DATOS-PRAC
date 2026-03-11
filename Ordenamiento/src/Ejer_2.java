@@ -10,7 +10,6 @@ import java.util.Scanner;
 import java.util.Arrays;
 
 public class Ejer_2 {
-
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
@@ -21,15 +20,13 @@ public class Ejer_2 {
         int[] isbn = new int[n];
 
         for (int i = 0; i < n; i++) {
-            System.out.print("Ingrese el ISBN del libro " + (i + 1) + ": ");
-            isbn[i] = sc.nextInt();
-        }
 
-        System.out.println("\nArreglo inicial:" + Arrays.toString(isbn));
+            System.out.print("Ingrese el ISBN del libro: ");
+            int num = sc.nextInt();
 
-        // ORDENAMIENTO POR INSERCIÓN
-        for (int i = 1; i < n; i++) {
+            isbn[i] = num;
 
+            // ORDENAMIENTO POR INSERCIÓN
             int clave = isbn[i];
             int j = i - 1;
 
@@ -40,11 +37,8 @@ public class Ejer_2 {
 
             isbn[j + 1] = clave;
 
-            System.out.println("Paso " + i + ": " + Arrays.toString(isbn));
+            System.out.println("Estante ordenado: " + Arrays.toString(isbn));
         }
-
-        System.out.println("\nISBN ordenados en el estante:");
-        System.out.println(Arrays.toString(isbn));
 
         sc.close();
     }
