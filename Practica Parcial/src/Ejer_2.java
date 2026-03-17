@@ -52,6 +52,13 @@ public class Ejer_2 {
             suma += puntajes[i];
         }
 
+        //ORIGINAL
+        System.out.println("\n--- PUNTAJES ORIGINALES ---");
+        for (int i = 0; i < puntajes.length; i++) {
+        System.out.print(puntajes[i] + " ");
+        }
+        System.out.println();
+
         //ORDENAR
         insertionSort(puntajes);
 

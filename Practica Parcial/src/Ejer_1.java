@@ -89,15 +89,23 @@ public class Ejer_1 {
             productos[i] = new Producto(id, nombre, precio, stock);
         }
 
+        //ORIGINAL
+        System.out.println("\n--- INVENTARIO ORIGINAL ---");
+       for (Producto p : productos) {
+    System.out.printf("ID: %-5d | Nombre: %-15s | Precio: %-10.1f | Stock: %-5d%n",
+        p.id, p.nombre, p.precio, p.stock);
+}
+
         //ORDENAMIENTO
         shellSort(productos);
 
         System.out.println("\n--- INVENTARIO ORDENADO POR ID (Shell Sort) ---");
 
         for (Producto p : productos) {
-        System.out.printf("ID: %-5d | Nombre: %-15s | Precio: %-10.1f | Stock: %-5d%n",
-            p.id, p.nombre, p.precio, p.stock);
-}
+         System.out.printf("ID: %-5d | Nombre: %-15s | Precio: %-10.1f | Stock: %-5d%n",
+        p.id, p.nombre, p.precio, p.stock);
+        }
+
 
         //BÚSQUEDA
         System.out.println("\n--- BÚSQUEDA DE PRODUCTO ---");

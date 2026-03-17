@@ -62,6 +62,10 @@ public class Ejer_3 {
         System.out.println("La nota más ALTA del grupo es: " + mayor);
         System.out.println("La nota más BAJA del grupo es: " + menor);
 
+         //ORIGINAL
+        System.out.println("\n--- NOTAS ORIGINALES ---");
+            System.out.println(Arrays.toString(notas));
+        
         //ORDENAMIENTO
         selectionSort(notas);
 
