@@ -1,13 +1,4 @@
 
-/*
-Clase Inventario
-
-Gestiona los productos:
-- Inserta al inicio si vence en menos de 3 días
-- Inserta al final si no
-- Muestra productos próximos a vencer
-*/
-
 public class Inventario {
     private Producto cabeza;
 

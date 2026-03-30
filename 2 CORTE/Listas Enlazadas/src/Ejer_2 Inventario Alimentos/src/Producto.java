@@ -1,9 +1,4 @@
 
-/*
-Clase Producto (Nodo)
-
-*/
-
 public class Producto {
     private String nombre;
     private int cantidad;
