@@ -1,11 +1,8 @@
-/**
- * Clase ListaReproduccion - Gestiona la lista de canciones como lista enlazada simple.
- * Permite agregar canciones al final o justo después de la canción actual.
- */
+
 public class ListaReproduccion {
 
     private Cancion cabeza;
-    private Cancion actual;   // canción que está sonando
+    private Cancion actual;   
     private int tamanio;
     private String nombre;
 
