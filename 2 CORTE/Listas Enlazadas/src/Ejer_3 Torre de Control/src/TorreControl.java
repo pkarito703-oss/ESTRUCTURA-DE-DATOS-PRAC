@@ -17,11 +17,11 @@ public class TorreControl {
     public void agregarVuelo(String numeroVuelo, String aerolinea, int combustible, int pasajeros) {
         Vuelo vuelo = new Vuelo(numeroVuelo, aerolinea, combustible, pasajeros);
         if (combustible < 10) {
-            System.out.println("⚠️  Vuelo " + numeroVuelo + " ingresa con emergencia. Movido al inicio.");
+            System.out.println("Vuelo " + numeroVuelo + " ingresa con emergencia. Movido al inicio.");
             insertarAlInicio(vuelo);
         } else {
             insertarAlFinal(vuelo);
-            System.out.println("✅ Vuelo " + numeroVuelo + " agregado al final de la cola.");
+            System.out.println("Vuelo " + numeroVuelo + " agregado al final de la cola.");
         }
         tamanio++;
     }
@@ -103,7 +103,7 @@ public class TorreControl {
         cabeza = cabeza.siguiente;
         atendido.siguiente = null;
         tamanio--;
-        System.out.println("🛬 Vuelo " + atendido.getNumeroVuelo() +
+        System.out.println("Vuelo " + atendido.getNumeroVuelo() +
                 " (" + atendido.getAerolinea() + ") autorizado para aterrizar.");
     }
 
