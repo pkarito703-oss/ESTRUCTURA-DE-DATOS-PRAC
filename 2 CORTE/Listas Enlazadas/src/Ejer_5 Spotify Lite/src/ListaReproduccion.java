@@ -1,25 +1,12 @@
-
 public class ListaReproduccion {
 
     private Cancion cabeza;
-    private Cancion actual;   
-    private int tamanio;
-    private String nombre;
+    private Cancion actual;  
 
-    public ListaReproduccion(String nombre) {
-        this.nombre = nombre;
-        this.cabeza  = null;
-        this.actual  = null;
-        this.tamanio = 0;
-    }
-
-    // Agrega una canción al final de la lista.
-    public void agregarAlFinal(String titulo, String artista, int segundos, String genero) {
-        Cancion nueva = new Cancion(titulo, artista, segundos, genero);
-
+    public void agregarAlFinal(Cancion nueva) {
         if (cabeza == null) {
-            cabeza  = nueva;
-            actual  = nueva;   
+            cabeza = nueva;
+            actual = cabeza;
         } else {
             Cancion temp = cabeza;
             while (temp.siguiente != null) {
@@ -27,83 +14,88 @@ public class ListaReproduccion {
             }
             temp.siguiente = nueva;
         }
-        tamanio++;
-        System.out.println("\"" + titulo + "\" agregada al final de la cola.");
+        System.out.println( nueva.titulo + "\" agregada al final de la cola.");
     }
 
-    // Agrega una canción justo después de la canción actual.
-    public void agregarAContinuacion(String titulo, String artista, int segundos, String genero) {
-        Cancion nueva = new Cancion(titulo, artista, segundos, genero);
-
+    
+    public void agregarAContinuacion(Cancion nueva) {
         if (actual == null) {
-            cabeza  = nueva;
-            actual  = nueva;
+           
+            cabeza = nueva;
+            actual = cabeza;
+            System.out.println( nueva.titulo + "\" agregada (lista estaba vacía, ahora es la actual).");
         } else {
-            nueva.siguiente   = actual.siguiente;
-            actual.siguiente  = nueva;
+            nueva.siguiente = actual.siguiente;
+            actual.siguiente = nueva;
+            System.out.println( nueva.titulo + "\" insertada después de \"" + actual.titulo + "\".");
         }
-        tamanio++;
-        System.out.println("Cancion \"" + titulo + "\" insertada a continuación de \"" + actual.getTitulo() + "\".");
     }
 
-    // Pasa a la siguiente canción de la lista.
+    
     public void siguiente() {
         if (actual == null || actual.siguiente == null) {
-            System.out.println("No hay más canciones en la lista.");
+            System.out.println("  No hay más canciones en la lista.");
+        } else {
+            actual = actual.siguiente;
+            System.out.println("Reproduciendo ahora:" + actual.titulo + " — " + actual.artista);
+        }
+    }
+
+    public void mostrarDuracionTotal() {
+        if (cabeza == null) {
+            System.out.println("  La lista está vacía.");
             return;
         }
-        actual = actual.siguiente;
-        System.out.println("Reproduciendo: " + actual.getTitulo() + " — " + actual.getArtista());
-    }
 
-    // Muestra la canción que está sonando actualmente.
-    public void mostrarActual() {
-        if (actual == null) {
-            System.out.println("   (Sin canción en reproducción)");
-        } else {
-            System.out.println("Actual: " + actual);
-        }
-    }
-
-    // Calcula la duración total de todas las canciones de la lista.
-    public String calcularDuracionTotal() {
         int totalSegundos = 0;
         Cancion temp = cabeza;
         while (temp != null) {
-            totalSegundos += temp.getDuracionSegundos();
+            totalSegundos += temp.duracionSegundos;
             temp = temp.siguiente;
         }
-        int min = totalSegundos / 60;
-        int seg = totalSegundos % 60;
-        return String.format("%02d:%02d", min, seg);
+
+        int minutos = totalSegundos / 60;
+        int segundos = totalSegundos % 60;
+
+        System.out.println("\n==============================================");
+        System.out.println("   Duración total de la lista");
+        System.out.println("==============================================");
+        System.out.println("  Tiempo total : " + String.format("%02d", minutos) + ":" + String.format("%02d", segundos));
+        System.out.println("  Canciones    : " + contarCanciones());
     }
 
-    public void mostrarLista() {
-        System.out.println("\n╔═════════════════════════════════════════════════════════════════════════════════════╗");
-        System.out.printf("║ %-83s ║%n", nombre);
-        System.out.printf("║  Canciones: %-3d | Duración total: %-49s ║%n", tamanio, calcularDuracionTotal());
-
-        System.out.println("╠═════════════════════════════════════════════════════════════════════════════════════╣");
-        System.out.printf("║ %-3s %-35s %-25s %-6s %-10s ║%n", "#", "Título", "Artista", "Dur.", "Género");
-        System.out.println("╠" + "═".repeat(85) + "╣");
-
+    public void imprimirLista() {
+        System.out.println("\n==============================================");
+        System.out.println("   Lista de reproducción");
+        System.out.println("==============================================");
         if (cabeza == null) {
-            System.out.printf("║ %-85s ║%n", "(Lista vacía)");
-        } else {
-            int pos = 1;
-            Cancion temp = cabeza;
-            while (temp != null) {
-                String indicador = (temp == actual) ? "-" : " ";
-                String duracion = String.format("%02d:%02d", temp.getDuracionSegundos() / 60, temp.getDuracionSegundos() % 60);
-
-                System.out.printf("║ %s%-2d %-35s %-25s %-6s %-10s ║%n",
-                        indicador, pos, temp.getTitulo(), temp.getArtista(), duracion, temp.getGenero());
-
-                temp = temp.siguiente;
-                pos++;
-            }
+            System.out.println("  (lista vacía)");
+            return;
         }
+        Cancion temp = cabeza;
+        int pos = 1;
+       while (temp != null) {
+            String marcador = "  ";
+            if (temp == actual) {
+                marcador = "";
+            }
+            int min = temp.duracionSegundos / 60;
+            int seg = temp.duracionSegundos % 60;
+            String minStr = (min < 10) ? "0" + min : "" + min;
+            String segStr = (seg < 10) ? "0" + seg : "" + seg;
+            System.out.println(marcador + "[" + pos + "] " + temp.titulo + " - " + temp.artista + " | " + minStr + ":" + segStr + " | " + temp.genero);
+            temp = temp.siguiente;
+            pos++;
+}
+    }
 
-        System.out.println("╚" + "═".repeat(85) + "╝");
+    private int contarCanciones() {
+        int count = 0;
+        Cancion temp = cabeza;
+        while (temp != null) {
+            count++;
+            temp = temp.siguiente;
+        }
+        return count;
     }
 }

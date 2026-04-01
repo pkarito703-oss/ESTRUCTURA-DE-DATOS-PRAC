@@ -1,9 +1,10 @@
-
+//La Clase Vuelo (Nodo): Debe contener numeroVuelo (String), aerolinea (String), combustibleRestante (int) y pasajeros (int)
 public class Vuelo {
-    private String numeroVuelo;
-    private String aerolinea;
-    private int combustibleRestante;
-    private int pasajeros;
+    String numeroVuelo;
+    String aerolinea;
+    int combustibleRestante;
+    int pasajeros;
+
     Vuelo siguiente;
 
     public Vuelo(String numeroVuelo, String aerolinea, int combustibleRestante, int pasajeros) {
@@ -13,17 +14,5 @@ public class Vuelo {
         this.pasajeros = pasajeros;
         this.siguiente = null;
     }
-
-    public String getNumeroVuelo() { return numeroVuelo; }
-    public String getAerolinea() { return aerolinea; }
-    public int getCombustibleRestante() { return combustibleRestante; }
-    public int getPasajeros() { return pasajeros; }
-    public void setCombustibleRestante(int combustible) { this.combustibleRestante = combustible; }
-
-    @Override
-    public String toString() {
-        String alerta = combustibleRestante < 10 ? " EMERGENCIA" : "";
-        return String.format("[%s | %s | Combustible: %d | Pasajeros: %d%s]",
-                numeroVuelo, aerolinea, combustibleRestante, pasajeros, alerta);
-    }
+    
 }

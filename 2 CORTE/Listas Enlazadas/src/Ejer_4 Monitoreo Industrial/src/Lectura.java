@@ -1,3 +1,4 @@
+//La Clase Lectura (Nodo): Debe contener idSensor (int), temperatura (double), presion (double) y hora (String).
 public class Lectura {
     int idSensor;
     double temperatura;
@@ -12,4 +13,5 @@ public class Lectura {
         this.hora = hora;
         this.siguiente = null;
     }
+    
 }

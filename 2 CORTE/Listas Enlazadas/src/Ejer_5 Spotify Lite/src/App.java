@@ -1,48 +1,82 @@
-/**
-5. Spotify Lite (Lista de Reproducción)
+/*5. Spotify Lite (Lista de Reproducción)
 Crea un reproductor de música simplificado que gestione una lista de canciones.
+
 La Clase Cancion (Nodo): Debe contener titulo (String), artista (String), duracionSegundos (int) y genero (String).
 El Problema: El usuario puede agregar canciones "A continuación" (insertar después de la actual) o "Al final de la cola".
-Reto: Implementa un método que sume la duración de todas las canciones y muestre el tiempo total de la lista en formato MM:SS
+Reto: Implementa un método que sume la duración de todas las canciones y muestre el tiempo total de la lista en formato MM:SS.
  */
-public class App {
+import java.util.Scanner;
 
+public class App {
     public static void main(String[] args) {
 
-        ListaReproduccion lista = new ListaReproduccion("Mi Playlist");
+        Scanner sc = new Scanner(System.in);
+        int opcion;
 
-        // Cargar canciones al final 
-        System.out.println("=== AGREGANDO CANCIONES AL FINAL ===");
-        lista.agregarAlFinal("Blinding Lights",   "The Weeknd",     200, "Pop");
-        lista.agregarAlFinal("HUMBLE.",            "Kendrick Lamar", 177, "Hip-Hop");
-        lista.agregarAlFinal("Bohemian Rhapsody",  "Queen",          354, "Rock");
-        lista.agregarAlFinal("Bad Guy",            "Billie Eilish",  194, "Electropop");
+        ListaReproduccion playlist = new ListaReproduccion();
 
-        lista.mostrarLista();
+        do {
+            System.out.println("\n==============================================");
+            System.out.println("   SPOTIFY LITE - Menú Principal");
+            System.out.println("==============================================");
+            System.out.println("1. Agregar canción al final");
+            System.out.println("2. Agregar canción a continuación");
+            System.out.println("3. Siguiente canción");
+            System.out.println("4. Ver lista de reproducción");
+            System.out.println("5. Ver duración total");
+            System.out.println();
+            System.out.println("0. Salir");
+            System.out.println("==============================================");
+            System.out.print("Elige una opción: ");
 
-        // Ver canción actual y avanzar
-        System.out.println("\n=== REPRODUCCIÓN ===");
-        lista.mostrarActual();
-        lista.siguiente();
-        lista.siguiente();
+            opcion = sc.nextInt();
+            sc.nextLine();
+            System.out.println();
 
-        lista.mostrarLista();   
+            switch (opcion) {
 
-        // Insertar "A continuación" de la actual 
-        System.out.println("\n=== INSERTAR A CONTINUACIÓN ===");
-        lista.agregarAContinuacion("Smells Like Teen Spirit", "Nirvana", 301, "Rock");
-        lista.agregarAContinuacion("Happier",                 "Olivia Rodrigo", 143, "Pop");
+                case 1:
+                case 2:
+                    System.out.print("Título    : ");
+                    String titulo = sc.nextLine();
+                    System.out.print("Artista   : ");
+                    String artista = sc.nextLine();
+                    System.out.print("Duracion (minutos): ");
+                    int minutos = sc.nextInt();
+                    System.out.print("Duracion (segundos): ");
+                    int segundos = sc.nextInt();
+                    int duracion = (minutos * 60) + segundos;
+                    sc.nextLine();
+                    System.out.print("Género    : ");
+                    String genero = sc.nextLine();
 
-        lista.mostrarLista();
+                    Cancion nueva = new Cancion(titulo, artista, duracion, genero);
+                    if (opcion == 1) playlist.agregarAlFinal(nueva);
+                    else            playlist.agregarAContinuacion(nueva);
+                    break;
 
-        // Más canciones al final 
-        System.out.println("\n=== MÁS CANCIONES AL FINAL ===");
-        lista.agregarAlFinal("Levitating", "Dua Lipa", 203, "Dance-Pop");
+                case 3:
+                    playlist.siguiente();
+                    break;
 
-        lista.mostrarLista();
+                case 4:
+                    playlist.imprimirLista();
+                    break;
 
-        // Duración total
-        System.out.println("\n=== DURACIÓN TOTAL DE LA PLAYLIST ===");
-        System.out.println("Tiempo total: " + lista.calcularDuracionTotal());
+                case 5:
+                    playlist.mostrarDuracionTotal();
+                    break;
+
+                case 0:
+                    System.out.println("Saliendo de Spotify");
+                    break;
+
+                default:
+                    System.out.println("Opción no válida. Intenta de nuevo.");
+            }
+
+        } while (opcion != 0);
+
+        sc.close();
     }
 }
