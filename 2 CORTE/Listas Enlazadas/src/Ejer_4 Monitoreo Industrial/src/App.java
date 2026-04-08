@@ -56,7 +56,7 @@ public class App {
                     break;
 
                 case 0:
-                    System.out.println("¡Saliendo del módulo de Monitoreo Industrial!");
+                    System.out.println("¡Saliendo de Monitoreo Industrial!");
                     break;
 
                 default:
